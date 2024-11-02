@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Translate</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .translate-container {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+        .form-control, .btn {
+            border-radius: 8px;
+        }
+        label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="translate-container">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="inputText">Matn kiriting:</label>
+                <textarea id="inputText" name="inputText" rows="5" class="form-control" placeholder="Matn kiriting..."></textarea>
+            </div>
+            <div class="form-group">
+                <label for="target_language">Tilni tanlang:</label>
+                <select name="target_language" id="target_language" class="form-control">
+                    <option value="uz">O'zbekcha</option>
+                    <option value="ru">Русский</option>
+                    <option value="en">English</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Yuborish</button>
+        </form>
+        {% if translation %}
+            <div class="alert alert-success mt-3" role="alert">
+                {{ translation }}
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Bootstrap and jQuery JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
